@@ -26,6 +26,12 @@ Repeat the same with `config/propel/runtime-conf.xml`
 $ composer install
 ```
 
+#### Generate config file
+
+```bash
+$ vendor/bin/propel config:convert-xml --output-dir="config/propel" --input-dir="config/propel"
+```
+
 #### Generating Required propel classes
 
 ```bash
