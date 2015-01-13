@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>HomePage</title>
+</head>
+<body>
+
+<form action="{{  path('post-status') }}" method="post">
+    <label for="post">What's happening?</label>
+    <br/>
+    <textarea name="post" id="post" cols="30" rows="10" id="post"></textarea>
+    <br/>
+    <div>
+        <span id="char-left">140</span> Characters left
+    </div>
+    <br/>
+    <small>Only 140 characters allowed.</small>
+    <br/>
+    <input type="submit"/>
+</form>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#post").keyup(function(){
+            if($(this).val().length > 140){
+                $(this).val($(this).val().substr(0, 140));
+            }
+
+            $('#char-left').html(140 - $(this).val().length);
+        });
+    });
+</script>
+</body>
+</html>

@@ -36,11 +36,20 @@ $app['debug'] = true;
 //Register UserService Provider
 $app->register(new \Koddi\User\UserServiceProvider());
 
-//Define AuthController and inject UserService
+//Register PostService provider
+$app->register(new \Koddi\Post\PostServiceProvider());
+
+//Define AuthController
 $app['auth.controller'] = $app->share(function() use ($app) {
-    return new \Koddi\Controller\AuthController($app['userService']);
+    return new \Koddi\Controller\AuthController();
 });
 
+//Define PostController
+$app['post.controller'] = $app->share(function() use ($app) {
+    return new \Koddi\Controller\PostController();
+});
+
+//Before Filter for authentication
 $authBeforeFilter = function (Request $request, Application $app) {
     if (null === $user = $app['session']->get('user')) {
         return $app->redirect('/login');
@@ -48,12 +57,16 @@ $authBeforeFilter = function (Request $request, Application $app) {
 };
 
 $app->get('/', function () use ($app) {
-    return $app['twig']->render('hello.twig');
+    return $app['twig']->render('home.twig');
 })->before($authBeforeFilter);
 
 $app->get('/login', 'auth.controller:getLogin');
 
 $app->get('/register', 'auth.controller:getRegister');
 $app->post('/register', 'auth.controller:postRegister')->bind('post-register');
+
+$app->post('/post-status', 'post.controller:postStatus')->bind('post-status')->before($authBeforeFilter);
+
+$app->get('/all-posts', 'post.controller:getAllPosts')->bind('all-posts')->before($authBeforeFilter);
 
 $app->run();

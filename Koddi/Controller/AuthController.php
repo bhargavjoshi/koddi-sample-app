@@ -15,7 +15,7 @@ class AuthController
         $user = $app['userService']->checkCredentials($username, $password);
 
         if ($user) {
-            $app['session']->set('user', array('userId' => $user->getId()));
+            $app['session']->set('user', $user);
             return $app->redirect('/');
         }
 
