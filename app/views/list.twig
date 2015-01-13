@@ -1,0 +1,10 @@
+{% if posts.count > 0 %}
+    <h1>Posts</h1>
+    <ul>
+        {% for post in posts %}
+            <li>{{ post.getPost }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Nothing Posted by user</p>
+{% endif %}
