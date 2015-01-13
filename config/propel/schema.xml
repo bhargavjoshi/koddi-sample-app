@@ -8,4 +8,13 @@
         <behavior name="timestampable"/>
         <behavior name="archivable" />
     </table>
+    <table name="posts" phpName="Post" namespace="Post">
+        <column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="post" type="VARCHAR" required="true" />
+        <column name="user_id" type="INTEGER" required="false"/>
+        <behavior name="timestampable"/>
+        <foreign-key foreignTable="users" phpName="User">
+            <reference local="user_id" foreign="id"/>
+        </foreign-key>
+    </table>
 </database>
