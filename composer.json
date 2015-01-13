@@ -2,7 +2,8 @@
   "require": {
     "silex/silex": "~1.2",
     "propel/propel": "2.0.0-alpha3",
-    "propel/propel-service-provider": "2.*@dev"
+    "propel/propel-service-provider": "2.*@dev",
+    "twig/twig": ">=1.8,<2.0-dev"
   },
   "autoload": {
     "psr-4": {
