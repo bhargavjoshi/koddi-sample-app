@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="koddi" defaultIdMethod="native" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://xsd.propelorm.org/1.6/database.xsd" namespace="Koddi\">
+    <table name="users" phpName="User" namespace="User">
+        <column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="username" type="VARCHAR" required="true" />
+        <column name="password" type="VARCHAR" required="true" />
+        <behavior name="timestampable"/>
+        <behavior name="archivable" />
+    </table>
+</database>
